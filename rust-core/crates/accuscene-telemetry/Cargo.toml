@@ -1,0 +1,49 @@
+[package]
+name = "accuscene-telemetry"
+version = "0.1.5"
+edition = "2021"
+authors = ["AccuScene Team"]
+description = "Enterprise telemetry, logging, and metrics for AccuScene"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Internal dependencies
+accuscene-core = { path = "../accuscene-core" }
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["json", "env-filter", "fmt", "ansi"] }
+tracing-appender = "0.2"
+
+# Metrics
+metrics = "0.22"
+metrics-exporter-prometheus = { version = "0.13", default-features = false }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+
+# Utilities
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+parking_lot = "0.12"
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+
+# Additional dependencies
+async-trait = "0.1"
+once_cell = "1.19"
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.0"
+
+[features]
+default = ["json-logs", "prometheus"]
+json-logs = []
+prometheus = []

@@ -1,0 +1,55 @@
+[package]
+name = "accuscene-jobs"
+version = "0.1.5"
+edition = "2021"
+authors = ["AccuScene Team"]
+description = "Multi-threaded job processing and task queue system for AccuScene Enterprise"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Internal dependencies
+accuscene-core = { path = "../accuscene-core" }
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+
+# Concurrency primitives
+crossbeam-channel = "0.5"
+crossbeam-queue = "0.3"
+rayon = "1.8"
+parking_lot = "0.12"
+
+# Utilities
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Logging and tracing
+tracing = "0.1"
+
+# Cron scheduling
+cron = "0.12"
+
+# SQLite for persistent queue
+rusqlite = { version = "0.30", features = ["bundled", "chrono"] }
+
+# Additional utilities
+async-trait = "0.1"
+once_cell = "1.19"
+futures = "0.3"
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"
+
+[features]
+default = ["persistent-queue", "cron-scheduling"]
+persistent-queue = []
+cron-scheduling = []

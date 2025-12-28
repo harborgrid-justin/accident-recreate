@@ -1,0 +1,181 @@
+# AccuScene Enterprise Clippy Configuration
+# Strict linting rules for production-grade code quality
+
+# Cognitive complexity threshold (default: 25)
+# Lower value enforces simpler functions
+cognitive-complexity-threshold = 20
+
+# Type complexity threshold (default: 250)
+# Prevents overly complex type definitions
+type-complexity-threshold = 200
+
+# Maximum number of single char bindings (default: 4)
+# Encourages descriptive variable names
+single-char-binding-names-threshold = 3
+
+# Maximum function lines (default: 100)
+# Enforces breaking down large functions
+too-many-lines-threshold = 80
+
+# Maximum number of arguments (default: 7)
+# Encourages using structs for complex function signatures
+too-many-arguments-threshold = 5
+
+# Minimum array size to trigger large array warnings (default: 512000)
+# Warns on large stack allocations
+array-size-threshold = 262144
+
+# Maximum allowed struct bools (default: 3)
+# Warns on structs with too many boolean fields
+max-struct-bools = 3
+
+# Maximum number of bounds for a trait (default: 3)
+# Prevents overly complex trait bounds
+max-trait-bounds = 4
+
+# Literal precision digits (default: 5)
+# Ensures floating point literals aren't too precise
+literal-representation-threshold = 10
+
+# Enable verbose bit mask warnings
+verbose-bit-mask-threshold = 1
+
+# Disallowed names (avoid these variable names)
+disallowed-names = ["foo", "bar", "baz", "tmp", "temp"]
+
+# Allowed trait prefixes for wildcard imports
+# We only allow std prelude by default
+allow-mixed-uninlined-format-args = false
+
+# Enforce documentation for public items
+missing-docs-in-crate-items = false
+
+# Standard lints - deny by default
+# These are enforced via command line: -D warnings
+# Listed here for documentation purposes
+
+# Correctness lints (always deny - these are bugs)
+# - absurd_extreme_comparisons
+# - almost_swapped
+# - approx_constant
+# - deprecated_semver
+# - eq_op
+# - erasing_op
+# - ineffective_bit_mask
+# - invalid_regex
+# - logic_bug
+# - mem_replace_with_uninit
+# - mistyped_literal_suffixes
+# - modulo_one
+# - uninit_assumed_init
+# - unused_io_amount
+# - useless_attribute
+
+# Suspicious lints (likely bugs)
+# - suspicious_arithmetic_impl
+# - suspicious_assignment_formatting
+# - suspicious_else_formatting
+# - suspicious_map
+# - suspicious_op_assign_impl
+
+# Complexity lints (code should be simpler)
+# - collapsible_if
+# - double_parens
+# - excessive_precision
+# - identity_op
+# - needless_bool
+# - needless_return
+# - redundant_closure
+# - redundant_pattern_matching
+# - single_match
+# - zero_divided_by_zero
+
+# Performance lints (inefficient code)
+# - box_collection
+# - expect_fun_call
+# - large_const_arrays
+# - large_enum_variant
+# - manual_memcpy
+# - needless_collect
+# - redundant_allocation
+# - slow_vector_initialization
+# - unnecessary_to_owned
+
+# Style lints (consistency)
+# - collapsible_else_if
+# - comparison_chain
+# - len_without_is_empty
+# - len_zero
+# - needless_late_init
+# - new_without_default
+# - single_char_pattern
+# - string_extend_chars
+# - unnecessary_mut_passed
+
+# Pedantic lints (extra strictness - opt-in)
+# These should be reviewed and enabled per-module
+# - cast_lossless
+# - cast_possible_truncation
+# - cast_possible_wrap
+# - cast_precision_loss
+# - cast_sign_loss
+# - checked_conversions
+# - explicit_into_iter_loop
+# - explicit_iter_loop
+# - if_not_else
+# - inconsistent_struct_constructor
+# - inefficient_to_string
+# - inline_always
+# - items_after_statements
+# - manual_assert
+# - manual_ok_or
+# - map_unwrap_or
+# - missing_errors_doc
+# - missing_panics_doc
+# - must_use_candidate
+# - needless_continue
+# - needless_for_each
+# - needless_pass_by_value
+# - semicolon_if_nothing_returned
+# - similar_names
+# - too_many_lines
+# - trivially_copy_pass_by_ref
+# - uninlined_format_args
+# - unnecessary_wraps
+# - unused_async
+# - unused_self
+# - used_underscore_binding
+# - wildcard_imports
+
+# Restriction lints (require explicit opt-in)
+# These are too strict for general use but good for specific contexts
+# - clone_on_ref_ptr
+# - dbg_macro
+# - decimal_literal_representation
+# - exit
+# - expect_used
+# - filetype_is_file
+# - float_cmp_const
+# - get_unwrap
+# - indexing_slicing
+# - let_underscore_must_use
+# - mem_forget
+# - missing_docs_in_private_items
+# - panic
+# - print_stderr
+# - print_stdout
+# - rc_buffer
+# - rest_pat_in_fully_bound_structs
+# - todo
+# - unimplemented
+# - unreachable
+# - unwrap_used
+# - verbose_file_reads
+# - wildcard_enum_match_arm
+
+# Cargo lints
+# - cargo_common_metadata
+# - multiple_crate_versions
+# - negative_feature_names
+# - redundant_feature_names
+# - wildcard_dependencies

@@ -1,0 +1,51 @@
+[package]
+name = "accuscene-streaming"
+version = "0.1.5"
+edition = "2021"
+authors = ["AccuScene Team"]
+description = "Real-time event streaming and WebSocket system for AccuScene Enterprise"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Internal dependencies
+accuscene-core = { path = "../accuscene-core" }
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+tokio-tungstenite = "0.21"
+
+# Async utilities
+futures = "0.3"
+futures-util = "0.3"
+async-broadcast = "0.7"
+async-channel = "2.1"
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+
+# Utilities
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Compression
+flate2 = "1.0"
+
+# Additional utilities
+parking_lot = "0.12"
+dashmap = "5.5"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = "0.5"
+
+[features]
+default = ["compression"]
+compression = []
