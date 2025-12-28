@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-jobs"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Team"]
 description = "Multi-threaded job processing and task queue system for AccuScene Enterprise"

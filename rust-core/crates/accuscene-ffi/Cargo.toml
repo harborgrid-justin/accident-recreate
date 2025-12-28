@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-ffi"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Enterprise Team"]
 description = "Node.js FFI bindings for AccuScene Core using napi-rs"

@@ -1,0 +1,45 @@
+.edit-modes {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #2a2a3e;
+  border-radius: 8px;
+}
+
+.mode-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  color: #aaa;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mode-button:hover {
+  background: #353550;
+  border-color: #404060;
+  color: #fff;
+}
+
+.mode-button.active {
+  background: #0088ff;
+  border-color: #0088ff;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 136, 255, 0.3);
+}
+
+.mode-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mode-label {
+  font-weight: 600;
+}

@@ -1,0 +1,58 @@
+.simulation-timeline {
+  padding: 16px;
+  background: #2a2a3e;
+}
+
+.timeline-track {
+  position: relative;
+  height: 8px;
+  background: #404060;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #0088ff;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.timeline-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid #0088ff;
+  border-radius: 50%;
+  cursor: grab;
+  pointer-events: none;
+}
+
+.timeline-handle:active {
+  cursor: grabbing;
+}
+
+.timeline-event-marker {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  font-size: 12px;
+  padding: 0 4px;
+}

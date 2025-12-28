@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-cluster"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Enterprise Team"]
 description = "Distributed clustering and consensus support for AccuScene Enterprise"

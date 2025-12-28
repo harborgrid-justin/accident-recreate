@@ -4,7 +4,7 @@
 
 use crate::error::{CryptoError, CryptoResult};
 use crate::random::SecureRng;
-use ed25519_dalek::{PublicKey, SecretKey, SECRET_KEY_LENGTH};
+use ed25519_dalek::{SigningKey, VerifyingKey, SECRET_KEY_LENGTH};
 use serde::{Deserialize, Serialize};
 use zeroize::Zeroize;
 
@@ -54,9 +54,9 @@ impl Ed25519PublicKey {
         Self::from_slice(&bytes)
     }
 
-    /// Convert to Ed25519-dalek public key
-    pub(crate) fn to_dalek_public_key(&self) -> CryptoResult<PublicKey> {
-        PublicKey::from_bytes(&self.bytes)
+    /// Convert to Ed25519-dalek verifying key
+    pub(crate) fn to_dalek_verifying_key(&self) -> CryptoResult<VerifyingKey> {
+        VerifyingKey::from_bytes(&self.bytes)
             .map_err(|e| CryptoError::InvalidInput(e.to_string()))
     }
 }
@@ -114,9 +114,9 @@ impl Ed25519SecretKey {
         Self::from_slice(&bytes)
     }
 
-    /// Convert to Ed25519-dalek secret key
-    pub(crate) fn to_dalek_secret_key(&self) -> SecretKey {
-        SecretKey::from_bytes(&self.bytes).expect("Invalid secret key")
+    /// Convert to Ed25519-dalek signing key
+    pub(crate) fn to_dalek_signing_key(&self) -> SigningKey {
+        SigningKey::from_bytes(&self.bytes)
     }
 }
 
@@ -137,23 +137,23 @@ impl Ed25519KeyPair {
     /// Generate a new random Ed25519 key pair
     pub fn generate() -> CryptoResult<Self> {
         let mut rng = SecureRng::new()?;
-        let secret = SecretKey::generate(&mut rng);
-        let public = PublicKey::from(&secret);
+        let signing_key = SigningKey::generate(&mut rng);
+        let verifying_key = signing_key.verifying_key();
 
         Ok(Self {
-            secret_key: Ed25519SecretKey::from_bytes(secret.to_bytes()),
-            public_key: Ed25519PublicKey::from_bytes(public.to_bytes()),
+            secret_key: Ed25519SecretKey::from_bytes(signing_key.to_bytes()),
+            public_key: Ed25519PublicKey::from_bytes(verifying_key.to_bytes()),
         })
     }
 
     /// Create a key pair from a secret key
     pub fn from_secret_key(secret_key: Ed25519SecretKey) -> CryptoResult<Self> {
-        let dalek_secret = secret_key.to_dalek_secret_key();
-        let dalek_public = PublicKey::from(&dalek_secret);
+        let signing_key = secret_key.to_dalek_signing_key();
+        let verifying_key = signing_key.verifying_key();
 
         Ok(Self {
             secret_key,
-            public_key: Ed25519PublicKey::from_bytes(dalek_public.to_bytes()),
+            public_key: Ed25519PublicKey::from_bytes(verifying_key.to_bytes()),
         })
     }
 

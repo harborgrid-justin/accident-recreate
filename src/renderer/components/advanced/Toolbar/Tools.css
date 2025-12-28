@@ -1,0 +1,97 @@
+.tools-panel {
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #2a2a3e;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-item:hover {
+  background: #353550;
+  border-color: #404060;
+}
+
+.tool-item.active {
+  background: #2a3550;
+  border-color: #0088ff;
+}
+
+.tool-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.tool-item:hover .tool-icon-wrapper {
+  background: #252540;
+}
+
+.tool-item.active .tool-icon-wrapper {
+  background: #0088ff;
+}
+
+.tool-icon {
+  font-size: 24px;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.tool-item:hover .tool-icon {
+  color: #fff;
+}
+
+.tool-item.active .tool-icon {
+  color: #fff;
+}
+
+.tool-info {
+  text-align: center;
+  width: 100%;
+}
+
+.tool-name {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tool-description {
+  color: #888;
+  font-size: 11px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.tool-shortcut {
+  padding: 2px 6px;
+  background: #1a1a2e;
+  border: 1px solid #404060;
+  border-radius: 3px;
+  color: #0088ff;
+  font-size: 10px;
+  font-weight: 600;
+  display: inline-block;
+}

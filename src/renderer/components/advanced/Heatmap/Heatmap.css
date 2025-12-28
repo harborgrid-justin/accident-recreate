@@ -1,0 +1,10 @@
+.heatmap-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.heatmap-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

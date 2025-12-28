@@ -11,12 +11,7 @@ use tracing::trace;
 pub fn serialize<T: Serialize>(data: &T) -> Result<Vec<u8>> {
     trace!("Serializing to compact format");
 
-    // Use bincode with custom config for compact representation
-    let config = bincode::config::standard()
-        .with_little_endian()
-        .with_fixed_int_encoding();
-
-    bincode::encode_to_vec(data, config)
+    bincode::serialize(data)
         .map_err(|e| CompressionError::Serialization(e.to_string()))
 }
 
@@ -24,14 +19,8 @@ pub fn serialize<T: Serialize>(data: &T) -> Result<Vec<u8>> {
 pub fn deserialize<'a, T: Deserialize<'a>>(data: &'a [u8]) -> Result<T> {
     trace!("Deserializing from compact format ({} bytes)", data.len());
 
-    let config = bincode::config::standard()
-        .with_little_endian()
-        .with_fixed_int_encoding();
-
-    let (decoded, _) = bincode::decode_from_slice(data, config)
-        .map_err(|e| CompressionError::Deserialization(e.to_string()))?;
-
-    Ok(decoded)
+    bincode::deserialize(data)
+        .map_err(|e| CompressionError::Deserialization(e.to_string()))
 }
 
 /// Serialize vector of f32 values (optimized for physics data)

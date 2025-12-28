@@ -8,9 +8,56 @@ use ed25519_dalek::{Signer as DalekSigner, Verifier};
 use serde::{Deserialize, Serialize};
 
 /// Ed25519 signature (64 bytes)
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Signature {
     bytes: [u8; 64],
+}
+
+impl Serialize for Signature {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_bytes(&self.bytes)
+    }
+}
+
+impl<'de> Deserialize<'de> for Signature {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        struct SignatureVisitor;
+
+        impl<'de> serde::de::Visitor<'de> for SignatureVisitor {
+            type Value = Signature;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("64 bytes for Ed25519 signature")
+            }
+
+            fn visit_bytes<E>(self, v: &[u8]) -> Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                Signature::from_slice(v).map_err(serde::de::Error::custom)
+            }
+
+            fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
+            where
+                A: serde::de::SeqAccess<'de>,
+            {
+                let mut bytes = [0u8; 64];
+                for i in 0..64 {
+                    bytes[i] = seq.next_element()?
+                        .ok_or_else(|| serde::de::Error::invalid_length(i, &self))?;
+                }
+                Ok(Signature::from_bytes(bytes))
+            }
+        }
+
+        deserializer.deserialize_bytes(SignatureVisitor)
+    }
 }
 
 impl Signature {
@@ -94,10 +141,7 @@ impl Ed25519Signer {
 
     /// Sign a message
     pub fn sign(&self, message: &[u8]) -> CryptoResult<Signature> {
-        let secret = self.keypair.secret_key().to_dalek_secret_key();
-        let public = self.keypair.public_key().to_dalek_public_key()?;
-
-        let signing_key = ed25519_dalek::SigningKey::from_bytes(&secret.to_bytes());
+        let signing_key = self.keypair.secret_key().to_dalek_signing_key();
         let signature = signing_key.sign(message);
 
         Ok(Signature::from_bytes(signature.to_bytes()))
@@ -122,10 +166,10 @@ pub fn verify_signature(
     message: &[u8],
     signature: &Signature,
 ) -> CryptoResult<bool> {
-    let dalek_public = public_key.to_dalek_public_key()?;
+    let verifying_key = public_key.to_dalek_verifying_key()?;
     let dalek_signature = signature.to_dalek_signature();
 
-    match dalek_public.verify(message, &dalek_signature) {
+    match verifying_key.verify(message, &dalek_signature) {
         Ok(_) => Ok(true),
         Err(_) => Ok(false),
     }
