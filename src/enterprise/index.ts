@@ -1,11 +1,11 @@
 /**
- * AccuScene Enterprise v0.2.0
+ * AccuScene Enterprise v0.2.5
  *
  * Central export point for all enterprise-grade features and modules
- * introduced in version 0.2.0.
+ * introduced in versions 0.2.0 and 0.2.5.
  *
  * @module enterprise
- * @version 0.2.0
+ * @version 0.2.5
  */
 
 // ============================================================================
@@ -304,13 +304,24 @@ export {
 // Version Information
 // ============================================================================
 
-export const ENTERPRISE_VERSION = '0.2.0';
+export const ENTERPRISE_VERSION = '0.2.5';
 export const ENTERPRISE_FEATURES = [
+  // v0.2.0 features
   'GraphQL Federation API',
   'Real-time Collaboration (CRDT)',
   'Advanced UI Components (3D, AR)',
   'Plugin Architecture',
   'Performance Monitoring',
+  // v0.2.5 new features
+  'Accessibility (a11y) Support',
+  'Interactive Dashboards',
+  'Gesture Recognition',
+  'Push Notifications',
+  'Offline-first Capabilities',
+  'User Preferences Management',
+  'Full-text Search',
+  'Advanced Data Visualization',
+  'Single Sign-On (SSO)',
 ] as const;
 
 /**
@@ -386,3 +397,13 @@ export async function initializeEnterprise(
 
   console.log(`✅ AccuScene Enterprise v${ENTERPRISE_VERSION} initialized`);
 }
+
+// ============================================================================
+// v0.2.5 Integration Exports
+// ============================================================================
+
+export * from './v0.2.5';
+export { default as EnterpriseProvider } from './v0.2.5/EnterpriseProvider';
+export { default as EnterpriseApp } from './v0.2.5/EnterpriseApp';
+export { default as useEnterprise } from './v0.2.5/hooks/useEnterprise';
+export { default as EnterpriseService } from './v0.2.5/services/EnterpriseService';

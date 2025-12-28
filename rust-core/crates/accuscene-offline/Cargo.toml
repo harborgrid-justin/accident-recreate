@@ -1,0 +1,64 @@
+[package]
+name = "accuscene-offline"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Team <team@accuscene.com>"]
+description = "Distributed offline sync and CRDT-based conflict resolution for AccuScene Enterprise"
+license = "MIT"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# UUID and time
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Database backends
+rusqlite = { version = "0.30", features = ["bundled", "chrono", "uuid"] }
+rocksdb = { version = "0.21", optional = true }
+
+# Networking
+reqwest = { version = "0.11", features = ["json"] }
+backoff = "0.4"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Concurrency
+parking_lot = "0.12"
+crossbeam = "0.8"
+
+# Compression for delta encoding
+flate2 = "1.0"
+lz4 = "1.24"
+
+# Hashing and crypto
+sha2 = "0.10"
+blake3 = "1.5"
+
+[dev-dependencies]
+tempfile = "3.8"
+criterion = "0.5"
+proptest = "1.4"
+
+[features]
+default = ["sqlite"]
+sqlite = []
+rocksdb-backend = ["rocksdb"]
+all-backends = ["sqlite", "rocksdb-backend"]
+
+[[bench]]
+name = "sync_benchmarks"
+harness = false

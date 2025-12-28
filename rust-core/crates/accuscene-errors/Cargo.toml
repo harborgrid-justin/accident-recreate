@@ -1,0 +1,52 @@
+[package]
+name = "accuscene-errors"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Comprehensive error handling and recovery infrastructure for AccuScene Enterprise"
+keywords = ["error-handling", "recovery", "diagnostics"]
+categories = ["development-tools::debugging"]
+
+[dependencies]
+# Core error handling
+thiserror.workspace = true
+anyhow.workspace = true
+
+# Serialization for error transport
+serde.workspace = true
+serde_json.workspace = true
+
+# Async support
+tokio = { workspace = true, features = ["sync", "time", "macros"] }
+async-trait.workspace = true
+
+# Logging and tracing
+tracing.workspace = true
+
+# Time handling for error timestamps
+chrono.workspace = true
+
+# UUID for error tracking
+uuid.workspace = true
+
+# Backtrace support (std feature in Rust 1.65+)
+backtrace = "0.3"
+
+# Optional dependencies for advanced features
+once_cell.workspace = true
+parking_lot.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util", "rt-multi-thread"] }
+proptest.workspace = true
+criterion.workspace = true
+
+[features]
+default = ["full"]
+full = ["network", "database", "filesystem"]
+network = []
+database = []
+filesystem = []

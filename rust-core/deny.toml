@@ -1,0 +1,252 @@
+# AccuScene Enterprise cargo-deny Configuration v0.2.5
+# Dependency auditing and license compliance
+# Updated: 2025-12-28
+# Documentation: https://embarkstudios.github.io/cargo-deny/
+
+# ============================================================================
+# ADVISORIES - Security Vulnerability Checking
+# ============================================================================
+
+[advisories]
+# The path where the advisory database is cloned/fetched into
+db-path = "~/.cargo/advisory-db"
+
+# The url(s) of the advisory databases to use
+db-urls = ["https://github.com/rustsec/advisory-db"]
+
+# The lint level for security vulnerabilities
+vulnerability = "deny"
+
+# The lint level for unmaintained crates
+unmaintained = "warn"
+
+# The lint level for crates that have been yanked from their source registry
+yanked = "deny"
+
+# The lint level for crates with security notices
+notice = "warn"
+
+# A list of advisory IDs to ignore
+ignore = [
+    # Example: "RUSTSEC-2020-0001",
+]
+
+# Threshold for security vulnerabilities
+# Options: low, medium, high, critical
+severity-threshold = "low"
+
+# ============================================================================
+# LICENSES - License Compliance Checking
+# ============================================================================
+
+[licenses]
+# The lint level for crates which do not have a detectable license
+unlicensed = "deny"
+
+# List of explicitly allowed licenses
+# See https://spdx.org/licenses/ for list of possible licenses
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-DFS-2016",
+    "Unlicense",
+    "Zlib",
+    "CC0-1.0",
+]
+
+# List of explicitly disallowed licenses
+deny = [
+    "GPL-2.0",
+    "GPL-3.0",
+    "AGPL-3.0",
+    "LGPL-2.0",
+    "LGPL-2.1",
+    "LGPL-3.0",
+]
+
+# Lint level for licenses considered copyleft
+copyleft = "deny"
+
+# Blanket approval or denial for OSI-approved or FSF Free/Libre licenses
+allow-osi-fsf-free = "both"
+
+# The default lint level for licenses not explicitly allowed or denied
+default = "deny"
+
+# The confidence threshold for detecting a license from license text
+# Confidence is on a 0.0 to 1.0 scale, with 1.0 being 100% confident
+confidence-threshold = 0.8
+
+# Allow 1 or more licenses on a per-crate basis
+exceptions = [
+    # Example:
+    # { allow = ["ISC"], name = "some-crate" },
+]
+
+# ============================================================================
+# BANS - Dependency Banning and Duplication
+# ============================================================================
+
+[bans]
+# Lint level for when multiple versions of the same crate are detected
+multiple-versions = "warn"
+
+# Lint level for when a crate version requirement is `*`
+wildcards = "deny"
+
+# The graph highlighting used when creating dotgraphs for crates
+highlight = "all"
+
+# The default lint level for `default` features for crates that are part
+# of the workspace
+workspace-default-features = "allow"
+
+# The default lint level for `default` features for external crates
+external-default-features = "allow"
+
+# List of crates that are allowed to have multiple versions
+allow = [
+    # Example: Allow multiple versions during transition periods
+    # { name = "some-crate", version = "=0.1.0" },
+]
+
+# List of explicitly banned crates
+deny = [
+    # Ban old/insecure versions
+    # { name = "openssl", version = "<0.10" },
+
+    # Ban crates with known security issues
+    # { name = "some-vulnerable-crate" },
+
+    # Ban unmaintained crates
+    # { name = "some-abandoned-crate" },
+]
+
+# Certain crates/versions that will be skipped when doing duplicate detection
+skip = [
+    # Example:
+    # { name = "some-crate", version = "=0.1.0" },
+]
+
+# Similarly named crate names that should be considered the same
+# Useful for renamed crates or forks
+skip-tree = [
+    # Example:
+    # { name = "old-name", version = "=0.1.0" },
+]
+
+# ============================================================================
+# SOURCES - Source Registry Validation
+# ============================================================================
+
+[sources]
+# Lint level for what to happen when a crate from a git repository
+# that is not in the allow list is encountered
+unknown-git = "warn"
+
+# Lint level for what to happen when a crate from a crate registry
+# that is not in the allow list is encountered
+unknown-registry = "deny"
+
+# List of URLs for allowed crate registries. Defaults to crates.io
+allow-registry = [
+    "https://github.com/rust-lang/crates.io-index"
+]
+
+# List of URLs for allowed Git repositories
+allow-git = [
+    # Example:
+    # "https://github.com/your-org/your-private-crate",
+]
+
+# List of organization URLs to allow
+[sources.allow-org]
+# Example:
+# github = ["your-org"]
+# gitlab = ["your-org"]
+# bitbucket = ["your-org"]
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+
+# This section is for configuring the output of cargo-deny
+
+[output]
+# When outputting inclusion graphs in diagnostics that include features,
+# this option can be used to specify the depth at which feature edges will
+# be added. This option is included since the graphs can be quite large
+# and the addition of features from the crate graph to the features graph
+# can be very noisy, but is useful for some diagnostic purposes.
+feature-depth = 1
+
+# ============================================================================
+# GRAPH OPTIONS
+# ============================================================================
+
+# This section is for configuring graph output options
+
+[graph]
+# If true, metadata will be collected with `--all-features`
+all-features = false
+
+# If true, metadata will be collected with `--no-default-features`
+no-default-features = false
+
+# If set, these features will be enabled when collecting metadata
+features = []
+
+# ============================================================================
+# TARGET CONFIGURATION
+# ============================================================================
+
+# This section is for configuring target-specific checks
+
+[targets]
+# The target triple to check
+# If not specified, all targets will be checked
+# targets = [
+#     "x86_64-unknown-linux-gnu",
+#     "x86_64-unknown-linux-musl",
+#     "x86_64-apple-darwin",
+#     "aarch64-apple-darwin",
+#     "x86_64-pc-windows-msvc",
+# ]
+
+# ============================================================================
+# CUSTOM ADVISORIES
+# ============================================================================
+
+# You can add custom advisories here for internal/private issues
+
+# Example:
+# [[advisories.custom]]
+# id = "CUSTOM-001"
+# package = "some-crate"
+# version = "< 1.2.3"
+# description = "Internal security issue"
+# severity = "high"
+
+# ============================================================================
+# NOTES
+# ============================================================================
+
+# To run cargo-deny:
+#
+# Install: cargo install cargo-deny
+#
+# Check all: cargo deny check
+# Check advisories: cargo deny check advisories
+# Check licenses: cargo deny check licenses
+# Check bans: cargo deny check bans
+# Check sources: cargo deny check sources
+#
+# Update advisory DB: cargo deny fetch
+#
+# Generate dependency graph: cargo deny graph
+#
+# In CI/CD, use: cargo deny check --all-features

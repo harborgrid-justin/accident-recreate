@@ -1,0 +1,43 @@
+[package]
+name = "accuscene-a11y"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Team <team@accuscene.com>"]
+description = "Comprehensive accessibility system with WCAG 2.1 AA compliance for AccuScene Enterprise"
+license = "MIT"
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# Color and contrast calculations
+palette = "0.7"
+colorsys = "0.6"
+
+# Text analysis
+unicode-segmentation = "1.10"
+unicode-width = "0.1"
+
+# Logging
+tracing = "0.1"
+
+# Configuration
+config = "0.13"
+
+[dev-dependencies]
+tokio-test = "0.4"
+assert_matches = "1.5"
+
+[features]
+default = ["full"]
+full = ["wcag", "screen-reader", "focus-management", "audit"]
+wcag = []
+screen-reader = []
+focus-management = []
+audit = []

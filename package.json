@@ -1,6 +1,6 @@
 {
   "name": "accuscene-enterprise",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "description": "AccuScene Enterprise Accident Recreation Platform",
   "main": "./dist/main/main.js",
   "author": "AccuScene Enterprise",
@@ -28,7 +28,16 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf dist build"
+    "clean": "rimraf dist build",
+    "build:v0.2.5": "bash scripts/build-v0.2.5.sh",
+    "build:v0.2.5:dev": "BUILD_MODE=debug bash scripts/build-v0.2.5.sh",
+    "build:v0.2.5:clean": "CLEAN_BUILD=true bash scripts/build-v0.2.5.sh",
+    "build:v0.2.5:fast": "SKIP_TESTS=true SKIP_LINT=true bash scripts/build-v0.2.5.sh",
+    "verify:build": "bash scripts/verify-build.sh",
+    "build:rust": "cd rust-core && cargo build --workspace --release",
+    "build:rust:dev": "cd rust-core && cargo build --workspace",
+    "test:rust": "cd rust-core && cargo test --workspace --all-features",
+    "check:rust": "cd rust-core && cargo check --workspace"
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
