@@ -1,0 +1,41 @@
+[package]
+name = "accuscene-physics"
+version = "0.1.5"
+edition = "2021"
+authors = ["AccuScene Team"]
+description = "High-performance physics simulation engine for accident reconstruction"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Internal dependencies
+accuscene-core = { path = "../accuscene-core" }
+
+# Linear algebra and numerics
+nalgebra = { version = "0.32", features = ["serde-serialize"] }
+
+# Parallel processing
+rayon = "1.8"
+
+# Error handling
+thiserror = "1.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+
+# Logging and tracing
+tracing = "0.1"
+
+# Thread synchronization
+parking_lot = "0.12"
+
+[dev-dependencies]
+approx = "0.5"
+criterion = "0.5"
+
+[[bench]]
+name = "physics_benchmarks"
+harness = false
+
+[features]
+default = ["parallel"]
+parallel = []
