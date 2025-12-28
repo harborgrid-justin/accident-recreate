@@ -1,0 +1,46 @@
+.ar-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ar-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.marker-image {
+  display: block;
+  border: 2px solid #00ff88;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.marker-label {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #00ff88;
+  border-radius: 4px;
+  color: #00ff88;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ar-marker-qr .marker-image {
+  border-color: #0088ff;
+  box-shadow: 0 0 10px rgba(0, 136, 255, 0.5);
+}
+
+.ar-marker-qr .marker-label {
+  border-color: #0088ff;
+  color: #0088ff;
+}

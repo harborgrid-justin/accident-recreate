@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-database"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Team"]
 description = "Enterprise database layer with connection pooling, migrations, and audit logging for AccuScene"

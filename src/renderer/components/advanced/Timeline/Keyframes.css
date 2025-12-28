@@ -1,0 +1,240 @@
+.keyframes-editor {
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.keyframes-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.keyframes-header h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.selected-property {
+  padding: 4px 8px;
+  background: #2a2a3e;
+  border-radius: 4px;
+  color: #0088ff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.add-keyframe-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  background: #0088ff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-keyframe-btn:hover {
+  background: #0099ff;
+}
+
+.keyframes-track {
+  position: relative;
+  height: 80px;
+  background: #2a2a3e;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.track-timeline {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.keyframe-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.keyframe-marker.active {
+  z-index: 2;
+}
+
+.marker-diamond {
+  width: 12px;
+  height: 12px;
+  background: #0088ff;
+  border: 2px solid #fff;
+  transform: rotate(45deg);
+  transition: all 0.2s;
+}
+
+.keyframe-marker:hover .marker-diamond {
+  width: 16px;
+  height: 16px;
+  background: #00aaff;
+}
+
+.keyframe-marker.active .marker-diamond {
+  background: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+}
+
+.keyframe-details {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  width: 220px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid #404060;
+  border-radius: 6px;
+  padding: 12px;
+  z-index: 10;
+}
+
+.details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #404060;
+}
+
+.details-header strong {
+  color: #fff;
+  font-size: 14px;
+}
+
+.remove-keyframe-btn {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid #404060;
+  border-radius: 3px;
+  color: #888;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-keyframe-btn:hover {
+  background: #ff4444;
+  border-color: #ff4444;
+  color: #fff;
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-row label {
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-row span {
+  color: #fff;
+  font-size: 13px;
+}
+
+.detail-row select {
+  padding: 4px 8px;
+  background: #2a2a3e;
+  border: 1px solid #404060;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.properties-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.property-item {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px;
+  background: #2a2a3e;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.property-key {
+  color: #0088ff;
+  font-weight: 600;
+}
+
+.property-value {
+  color: #ccc;
+}
+
+.keyframes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.keyframe-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #2a2a3e;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.keyframe-item:hover {
+  background: #353550;
+}
+
+.keyframe-item.active {
+  border-left-color: #00ff88;
+  background: #2a3540;
+}
+
+.keyframe-time {
+  color: #0088ff;
+  font-weight: 600;
+  min-width: 60px;
+}
+
+.keyframe-interp {
+  color: #888;
+  font-size: 12px;
+}
+
+.keyframe-props {
+  margin-left: auto;
+  color: #aaa;
+  font-size: 12px;
+}

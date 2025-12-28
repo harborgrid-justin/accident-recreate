@@ -1029,3 +1029,32 @@ export interface ChangeRecord {
   oldValue: any;
   newValue: any;
 }
+
+// ============================================================================
+// ENTERPRISE v0.2.0 TYPE RE-EXPORTS
+// ============================================================================
+
+/**
+ * GraphQL Federation API Types (Agent 6)
+ */
+export type * from '../graphql/types';
+
+/**
+ * Real-time Collaboration Types (Agent 7)
+ */
+export type * from '../collaboration/types';
+
+/**
+ * Advanced UI Component Types (Agent 8)
+ */
+export type * from '../renderer/components/advanced/types';
+
+/**
+ * Plugin Architecture Types (Agent 9)
+ */
+export type * from '../plugins/types';
+
+/**
+ * Performance Monitoring Types (Agent 10)
+ */
+export type * from '../monitoring/types';

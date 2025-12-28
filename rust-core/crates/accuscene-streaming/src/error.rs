@@ -124,6 +124,74 @@ pub enum StreamingError {
     #[error("Aggregation error: {0}")]
     Aggregation(String),
 
+    /// Windowing error
+    #[error("Windowing error: {0}")]
+    Windowing(String),
+
+    /// Join error
+    #[error("Join error: {0}")]
+    Join(String),
+
+    /// Partitioning error
+    #[error("Partitioning error: {0}")]
+    Partitioning(String),
+
+    /// Checkpoint error
+    #[error("Checkpoint error: {0}")]
+    Checkpoint(String),
+
+    /// Checkpoint restoration failed
+    #[error("Failed to restore from checkpoint: {0}")]
+    CheckpointRestore(String),
+
+    /// Watermark error
+    #[error("Watermark error: {0}")]
+    Watermark(String),
+
+    /// State backend error
+    #[error("State backend error: {0}")]
+    StateBackend(String),
+
+    /// State not found
+    #[error("State not found: {0}")]
+    StateNotFound(String),
+
+    /// Backpressure error
+    #[error("Backpressure error: {0}")]
+    Backpressure(String),
+
+    /// Buffer overflow
+    #[error("Buffer overflow: capacity {capacity} exceeded")]
+    BufferOverflow { capacity: usize },
+
+    /// Source error
+    #[error("Source error: {0}")]
+    Source(String),
+
+    /// Sink error
+    #[error("Sink error: {0}")]
+    Sink(String),
+
+    /// Pipeline error
+    #[error("Pipeline error: {0}")]
+    Pipeline(String),
+
+    /// Runtime error
+    #[error("Runtime error: {0}")]
+    Runtime(String),
+
+    /// Arrow error
+    #[error("Arrow error: {0}")]
+    Arrow(String),
+
+    /// Parquet error
+    #[error("Parquet error: {0}")]
+    Parquet(String),
+
+    /// File rotation error
+    #[error("File rotation error: {0}")]
+    FileRotation(String),
+
     /// Configuration error
     #[error("Configuration error: {0}")]
     Configuration(String),
@@ -200,7 +268,23 @@ impl StreamingError {
             StreamingError::StreamProcessing(_)
             | StreamingError::Filter(_)
             | StreamingError::Transform(_)
-            | StreamingError::Aggregation(_) => "stream",
+            | StreamingError::Aggregation(_)
+            | StreamingError::Windowing(_)
+            | StreamingError::Join(_) => "stream",
+            StreamingError::Partitioning(_) => "partitioning",
+            StreamingError::Checkpoint(_) | StreamingError::CheckpointRestore(_) => "checkpoint",
+            StreamingError::Watermark(_) => "watermark",
+            StreamingError::StateBackend(_) | StreamingError::StateNotFound(_) => "state",
+            StreamingError::Backpressure(_) | StreamingError::BufferOverflow { .. } => {
+                "backpressure"
+            }
+            StreamingError::Source(_) => "source",
+            StreamingError::Sink(_) => "sink",
+            StreamingError::Pipeline(_) => "pipeline",
+            StreamingError::Runtime(_) => "runtime",
+            StreamingError::Arrow(_) => "arrow",
+            StreamingError::Parquet(_) => "parquet",
+            StreamingError::FileRotation(_) => "file_rotation",
             StreamingError::Configuration(_) => "config",
             StreamingError::ResourceLimitExceeded { .. } => "resource",
             StreamingError::Internal(_) => "internal",

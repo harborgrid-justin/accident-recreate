@@ -1,0 +1,45 @@
+.chart-container {
+  padding: 16px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+}
+
+.chart-title {
+  margin: 0 0 16px 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chart-canvas {
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2a2a3e;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.legend-label {
+  color: #ccc;
+  font-size: 13px;
+}

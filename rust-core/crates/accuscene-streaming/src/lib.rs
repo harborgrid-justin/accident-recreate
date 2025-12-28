@@ -1,13 +1,25 @@
-//! # AccuScene Streaming
+//! # AccuScene Streaming v0.2.0
 //!
-//! Real-time event streaming and WebSocket system for AccuScene Enterprise.
+//! Real-time distributed streaming pipeline for AccuScene Enterprise.
 //!
 //! ## Features
 //!
+//! ### Real-time Streaming Infrastructure
+//! - **Stream Processing**: High-performance streaming traits and operators
+//! - **Source Connectors**: Channel, file, WebSocket, and iterator sources
+//! - **Sink Connectors**: Channel, file, WebSocket, and Parquet sinks
+//! - **Operators**: Map, filter, flatmap, window, join, aggregate, and keyby
+//! - **Backpressure**: Adaptive flow control and backpressure handling
+//! - **Watermarks**: Event-time processing with watermark support
+//! - **Checkpointing**: Fault tolerance through state checkpointing
+//! - **State Management**: Stateful processing with multiple state backends
+//! - **Partitioning**: Distributed processing with flexible partitioning strategies
+//! - **Apache Arrow**: Columnar data processing with Parquet support
+//!
+//! ### Legacy Event System
 //! - **Event Bus**: Multiple event bus implementations (memory, channel, broadcast)
 //! - **Pub/Sub**: Topic-based publish/subscribe messaging
 //! - **WebSocket**: Server and client implementations with protocol support
-//! - **Stream Processing**: Filter, transform, and aggregate event streams
 //! - **Event Replay**: Synchronization through event replay
 //! - **Presence Tracking**: User presence and activity monitoring
 //! - **Room Management**: Per-case collaboration rooms
@@ -42,18 +54,31 @@
 // Core modules
 pub mod error;
 pub mod event;
+pub mod config;
 
-// Event distribution
+// Streaming infrastructure (v0.2.0)
+pub mod stream;
+pub mod source;
+pub mod sink;
+pub mod operators;
+pub mod buffer;
+pub mod backpressure;
+pub mod checkpoint;
+pub mod watermark;
+pub mod state;
+pub mod partition;
+pub mod pipeline;
+pub mod runtime;
+pub mod domain;
+
+// Legacy event distribution
 pub mod bus;
 pub mod pubsub;
 
 // WebSocket support
 pub mod websocket;
 
-// Stream processing
-pub mod stream;
-
-// Additional features
+// Legacy additional features
 pub mod auth;
 pub mod compression;
 pub mod heartbeat;
@@ -67,12 +92,41 @@ pub use event::{Event, EventFilter, EventMetadata, EventPayload, EventType};
 
 /// Prelude module with commonly used imports
 pub mod prelude {
+    // Core types
+    pub use crate::error::{Result, StreamingError};
+    pub use crate::config::StreamingConfig;
+
+    // Streaming infrastructure (v0.2.0)
+    pub use crate::stream::{DataStream, StreamExt};
+    pub use crate::source::{Source, ChannelSource, FileSource, IteratorSource};
+    pub use crate::sink::{Sink, ChannelSink, FileSink};
+    pub use crate::operators::{
+        AggregateOperator, Aggregator, FilterOperator, FlatMapOperator,
+        JoinOperator, JoinType, KeyByOperator, KeyExtractor, MapOperator,
+        WindowOperator, WindowAssigner, WindowType,
+    };
+    pub use crate::backpressure::{BackpressureController, AdaptiveBackpressure};
+    pub use crate::checkpoint::{CheckpointCoordinator, Checkpoint};
+    pub use crate::watermark::{Watermark, Timestamp, WatermarkTracker};
+    pub use crate::state::{StateContext, ValueState, ListState, MapState};
+    pub use crate::partition::{Partitioner, PartitionAssignment};
+    pub use crate::pipeline::{Pipeline, PipelineBuilder};
+    pub use crate::runtime::{StreamingRuntime, RuntimeBuilder};
+
+    // Domain-specific streams
+    pub use crate::domain::{
+        SimulationStream, SimulationData, SimulationState,
+        SensorStream, SensorData, SensorType,
+        EventStream, SystemEvent, SystemEventType,
+        TelemetryStream, TelemetryData, TelemetryType,
+    };
+
+    // Legacy event system
     pub use crate::auth::{AuthResult, AuthToken, Authenticator, Authorizer, Permission};
-    pub use crate::bus::{EventBus, EventBusBuilder, EventBusType, EventStream};
+    pub use crate::bus::{EventBus, EventBusBuilder, EventBusType, EventStream as LegacyEventStream};
     pub use crate::compression::{
         CompressionConfig, CompressionLevel, Compressor, Decompressor,
     };
-    pub use crate::error::{Result, StreamingError};
     pub use crate::event::{
         CursorPosition, Event, EventFilter, EventMetadata, EventPayload, EventType,
         PresenceStatus, VehicleState,
@@ -82,10 +136,6 @@ pub mod prelude {
     pub use crate::pubsub::{DefaultPubSub, PubSub, Publisher, Subscriber, SubscriberId};
     pub use crate::replay::{ReplayBuffer, ReplayConfig, ReplayManager};
     pub use crate::room::{Room, RoomInfo, RoomManager};
-    pub use crate::stream::{
-        Aggregator, EventFilterStream, EventTransformer, FilterStreamExt, TransformStreamExt,
-        WindowAggregator,
-    };
     pub use crate::websocket::{
         ConnectionState, MessageHandler, ReconnectConfig, WsClient, WsMessage, WsServer,
     };

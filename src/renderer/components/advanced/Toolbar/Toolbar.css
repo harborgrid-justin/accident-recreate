@@ -1,0 +1,100 @@
+.toolbar {
+  background: #2a2a3e;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.toolbar-horizontal {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.toolbar-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toolbar.compact {
+  padding: 8px;
+}
+
+.toolbar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toolbar-horizontal .toolbar-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.toolbar-group-label {
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  padding: 0 4px;
+}
+
+.toolbar-horizontal .toolbar-group-label {
+  margin: 0;
+  margin-right: 8px;
+}
+
+.toolbar-tools {
+  display: flex;
+  gap: 4px;
+}
+
+.toolbar-vertical .toolbar-tools {
+  flex-direction: column;
+}
+
+.toolbar-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #aaa;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.toolbar.compact .toolbar-tool {
+  padding: 8px;
+  justify-content: center;
+}
+
+.toolbar-tool:hover {
+  background: #353550;
+  border-color: #404060;
+  color: #fff;
+}
+
+.toolbar-tool.active {
+  background: #0088ff;
+  border-color: #0088ff;
+  color: #fff;
+}
+
+.tool-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.tool-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toolbar.compact .tool-label {
+  display: none;
+}

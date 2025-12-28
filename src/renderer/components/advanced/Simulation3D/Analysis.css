@@ -1,0 +1,129 @@
+.simulation-analysis {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 280px;
+  background: rgba(26, 26, 46, 0.95);
+  border: 1px solid #404060;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.simulation-analysis.collapsed {
+  width: auto;
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #2a2a3e;
+  cursor: pointer;
+  user-select: none;
+}
+
+.analysis-header h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.toggle-icon {
+  color: #aaa;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.analysis-content {
+  padding: 16px;
+}
+
+.analysis-section {
+  margin-bottom: 20px;
+}
+
+.analysis-section:last-child {
+  margin-bottom: 0;
+}
+
+.analysis-section h5 {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.analysis-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.analysis-option:hover {
+  color: #fff;
+}
+
+.analysis-option input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.color-scheme-options {
+  display: flex;
+  gap: 8px;
+}
+
+.scheme-button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #404060;
+  background: transparent;
+  color: #aaa;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scheme-button:hover {
+  border-color: #0088ff;
+  color: #fff;
+}
+
+.scheme-button.active {
+  background: #0088ff;
+  border-color: #0088ff;
+  color: #fff;
+}
+
+.analysis-legend {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #404060;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}

@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-cache"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Team"]
 description = "Advanced multi-tier caching system for AccuScene Enterprise"

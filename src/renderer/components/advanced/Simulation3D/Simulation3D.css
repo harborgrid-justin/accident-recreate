@@ -1,0 +1,97 @@
+.simulation-3d-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #1a1a2e;
+}
+
+.simulation-viewport {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.simulation-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.simulation-time {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.simulation-playing {
+  font-size: 12px;
+  color: #00ff88;
+}
+
+.simulation-info {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: #2a2a3e;
+  border-top: 1px solid #404060;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.simulation-vehicles,
+.simulation-events {
+  flex: 1;
+}
+
+.simulation-vehicles h4,
+.simulation-events h4 {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.vehicle-info {
+  padding: 8px;
+  margin-bottom: 8px;
+  background: #1a1a2e;
+  border-radius: 4px;
+  border-left: 3px solid #0088ff;
+}
+
+.vehicle-name {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.vehicle-state small {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.event-notification {
+  padding: 8px;
+  margin-bottom: 8px;
+  background: #1a1a2e;
+  border-radius: 4px;
+  border-left: 3px solid #ff6600;
+}
+
+.event-notification strong {
+  color: #ff6600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.event-notification p {
+  margin: 0;
+  color: #ccc;
+  font-size: 12px;
+}

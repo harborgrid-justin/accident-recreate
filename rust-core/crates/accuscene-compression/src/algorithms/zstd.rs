@@ -1,9 +1,9 @@
 //! Zstandard compression implementation - Balanced compression speed and ratio
 
 use crate::error::{CompressionError, Result};
-use crate::traits::{Algorithm, CompressionLevel, Compressor};
+use crate::traits::{Algorithm, CompressionLevel, Compressor as CompressorTrait};
 use tracing::{debug, trace};
-use zstd::bulk::{compress, decompress, Decompressor};
+use zstd::bulk::{compress, decompress, Compressor, Decompressor};
 
 /// Zstandard compression implementation
 #[derive(Debug, Clone)]
@@ -31,7 +31,13 @@ impl ZstdCompressor {
     pub fn train_dictionary(samples: &[&[u8]], dict_size: usize) -> Result<Vec<u8>> {
         trace!("Training Zstandard dictionary with {} samples", samples.len());
 
-        zstd::dict::from_continuous(samples, &[], dict_size)
+        // Concatenate samples into continuous buffer for zstd
+        let mut continuous = Vec::new();
+        for sample in samples {
+            continuous.extend_from_slice(sample);
+        }
+
+        zstd::dict::from_continuous(&continuous, &[], dict_size)
             .map_err(|e| CompressionError::Dictionary(e.to_string()))
     }
 
@@ -39,7 +45,10 @@ impl ZstdCompressor {
     pub fn compress_with_dict(&self, data: &[u8], dict: &[u8], level: i32) -> Result<Vec<u8>> {
         trace!("Zstandard compressing {} bytes with dictionary", data.len());
 
-        zstd::bulk::compress_using_dict(data, dict, level)
+        let mut encoder = zstd::bulk::Compressor::with_dictionary(level, dict)
+            .map_err(|e| CompressionError::Zstd(e.to_string()))?;
+
+        encoder.compress(data)
             .map_err(|e| CompressionError::Zstd(e.to_string()))
     }
 
@@ -62,7 +71,7 @@ impl Default for ZstdCompressor {
     }
 }
 
-impl Compressor for ZstdCompressor {
+impl CompressorTrait for ZstdCompressor {
     fn compress(&self, data: &[u8], level: CompressionLevel) -> Result<Vec<u8>> {
         let zstd_level = level.to_level(Algorithm::Zstd);
         trace!("Zstandard compressing {} bytes at level {}", data.len(), zstd_level);

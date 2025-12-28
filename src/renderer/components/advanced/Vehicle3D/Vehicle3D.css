@@ -1,0 +1,18 @@
+.vehicle-3d {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vehicle-3d.hovered {
+  filter: brightness(1.2);
+}
+
+.vehicle-loading {
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+}

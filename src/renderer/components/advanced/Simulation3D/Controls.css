@@ -1,0 +1,72 @@
+.simulation-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 16px;
+  background: #2a2a3e;
+  border-top: 1px solid #404060;
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls-group label {
+  color: #aaa;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #404060;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.control-button:hover {
+  background: #505070;
+}
+
+.control-button:active {
+  transform: scale(0.95);
+}
+
+.control-button.primary {
+  background: #0088ff;
+}
+
+.control-button.primary:hover {
+  background: #0099ff;
+}
+
+.speed-button {
+  padding: 6px 12px;
+  border: 1px solid #404060;
+  background: transparent;
+  color: #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.speed-button:hover {
+  border-color: #0088ff;
+  color: #fff;
+}
+
+.speed-button.active {
+  background: #0088ff;
+  border-color: #0088ff;
+  color: #fff;
+}

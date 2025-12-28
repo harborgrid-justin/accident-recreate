@@ -1,6 +1,6 @@
 [package]
 name = "accuscene-core"
-version = "0.1.5"
+version = "0.2.0"
 edition = "2021"
 authors = ["AccuScene Enterprise Team"]
 description = "Core library for AccuScene Enterprise accident recreation platform"
