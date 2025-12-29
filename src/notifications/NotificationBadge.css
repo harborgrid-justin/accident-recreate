@@ -1,0 +1,118 @@
+/* Notification Badge Styles */
+
+.notification-badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: white;
+  background-color: #ef4444;
+  border-radius: 10px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.notification-badge:empty {
+  padding: 0;
+  min-width: 8px;
+  height: 8px;
+}
+
+/* Sizes */
+.notification-badge-small {
+  min-width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 10px;
+  padding: 0 4px;
+  border-radius: 8px;
+}
+
+.notification-badge-medium {
+  min-width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  padding: 0 6px;
+  border-radius: 10px;
+}
+
+.notification-badge-large {
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  padding: 0 8px;
+  border-radius: 12px;
+}
+
+/* Colors */
+.notification-badge-primary {
+  background-color: #3b82f6;
+}
+
+.notification-badge-success {
+  background-color: #10b981;
+}
+
+.notification-badge-warning {
+  background-color: #f59e0b;
+}
+
+.notification-badge-error {
+  background-color: #ef4444;
+}
+
+.notification-badge-info {
+  background-color: #06b6d4;
+}
+
+/* Dot variant */
+.notification-badge-dot {
+  min-width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+.notification-badge-dot.notification-badge-small {
+  min-width: 6px;
+  height: 6px;
+}
+
+.notification-badge-dot.notification-badge-large {
+  min-width: 10px;
+  height: 10px;
+}
+
+/* Animation */
+@keyframes badge-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.notification-badge:not(:empty) {
+  animation: badge-pulse 0.3s ease;
+}

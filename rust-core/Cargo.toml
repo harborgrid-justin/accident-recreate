@@ -16,10 +16,22 @@ members = [
     "crates/accuscene-analytics",
     "crates/accuscene-ml",
     "crates/accuscene-security",
+    # v0.2.5 new crates
+    "crates/accuscene-errors",
+    "crates/accuscene-dashboard",
+    "crates/accuscene-notifications",
+    "crates/accuscene-visualization",
+    "crates/accuscene-gestures",
+    "crates/accuscene-offline",
+    "crates/accuscene-sso",
+    "crates/accuscene-search",
+    "crates/accuscene-transfer",
+    "crates/accuscene-preferences",
+    "crates/accuscene-a11y",
 ]
 
 [workspace.package]
-version = "0.2.0"
+version = "0.2.5"
 edition = "2021"
 rust-version = "1.75"
 authors = ["AccuScene Enterprise Team"]

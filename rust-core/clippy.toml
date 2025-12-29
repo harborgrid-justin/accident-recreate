@@ -1,5 +1,10 @@
-# AccuScene Enterprise Clippy Configuration
+# AccuScene Enterprise Clippy Configuration v0.2.5
 # Strict linting rules for production-grade code quality
+# Updated: 2025-12-28
+
+# ============================================================================
+# COMPLEXITY THRESHOLDS
+# ============================================================================
 
 # Cognitive complexity threshold (default: 25)
 # Lower value enforces simpler functions
@@ -21,9 +26,23 @@ too-many-lines-threshold = 80
 # Encourages using structs for complex function signatures
 too-many-arguments-threshold = 5
 
+# ============================================================================
+# MEMORY AND PERFORMANCE
+# ============================================================================
+
 # Minimum array size to trigger large array warnings (default: 512000)
 # Warns on large stack allocations
 array-size-threshold = 262144
+
+# Vector initialization capacity threshold
+vec-box-size-threshold = 4096
+
+# Large stack arrays threshold (bytes)
+large-stack-arrays-threshold = 16384
+
+# ============================================================================
+# STRUCT AND TYPE DESIGN
+# ============================================================================
 
 # Maximum allowed struct bools (default: 3)
 # Warns on structs with too many boolean fields
@@ -33,6 +52,36 @@ max-struct-bools = 3
 # Prevents overly complex trait bounds
 max-trait-bounds = 4
 
+# Maximum enum variant size difference
+enum-variant-size-threshold = 200
+
+# ============================================================================
+# NAMING AND STYLE
+# ============================================================================
+
+# Disallowed names (avoid these variable names)
+disallowed-names = ["foo", "bar", "baz", "tmp", "temp", "data", "val", "item"]
+
+# Allowed wildcard imports (only std prelude)
+allow-mixed-uninlined-format-args = false
+
+# Disallow uppercase abbreviations in names
+upper-case-acronyms-aggressive = true
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+
+# Enforce documentation for public items
+missing-docs-in-crate-items = false
+
+# Minimum documentation comment length
+doc-valid-idents = ["AccuScene", "PostgreSQL", "SQLite", "WebSocket", "GraphQL", "FFI"]
+
+# ============================================================================
+# NUMERIC LITERALS
+# ============================================================================
+
 # Literal precision digits (default: 5)
 # Ensures floating point literals aren't too precise
 literal-representation-threshold = 10
@@ -40,15 +89,175 @@ literal-representation-threshold = 10
 # Enable verbose bit mask warnings
 verbose-bit-mask-threshold = 1
 
-# Disallowed names (avoid these variable names)
-disallowed-names = ["foo", "bar", "baz", "tmp", "temp"]
+# Unreadable literal lint threshold
+unreadable-literal-lint-fractions = true
 
-# Allowed trait prefixes for wildcard imports
-# We only allow std prelude by default
-allow-mixed-uninlined-format-args = false
+# ============================================================================
+# ERROR HANDLING
+# ============================================================================
 
-# Enforce documentation for public items
-missing-docs-in-crate-items = false
+# Disallow specific methods (unsafe operations)
+disallowed-methods = [
+    # Panicking methods - use Result instead
+    { path = "std::env::var", reason = "use std::env::var with proper error handling" },
+    { path = "std::env::set_var", reason = "use configuration management instead" },
+]
+
+# Disallow specific types (known problematic types)
+disallowed-types = [
+    { path = "std::collections::HashMap", reason = "prefer DashMap for concurrent access or BTreeMap for ordered keys" },
+]
+
+# ============================================================================
+# ASYNC AND CONCURRENCY
+# ============================================================================
+
+# Futures not send - all futures should be Send for tokio
+# This is enforced via custom lints in workspace
+
+# ============================================================================
+# MODULE ORGANIZATION
+# ============================================================================
+
+# Maximum module inception depth
+max-suggested-slice-pattern-length = 3
+
+# ============================================================================
+# ARITHMETIC AND LOGIC
+# ============================================================================
+
+# Allow dbg! macro in debug builds only
+# Controlled via cfg attributes in code
+
+# ============================================================================
+# STANDARD LINTS REFERENCE
+# ============================================================================
+# These are enforced via command line: -D warnings
+# Listed here for documentation purposes
+
+# CORRECTNESS LINTS (always deny - these are bugs)
+# - absurd_extreme_comparisons
+# - almost_swapped
+# - approx_constant
+# - deprecated_semver
+# - eq_op
+# - erasing_op
+# - ineffective_bit_mask
+# - invalid_regex
+# - logic_bug
+# - mem_replace_with_uninit
+# - mistyped_literal_suffixes
+# - modulo_one
+# - uninit_assumed_init
+# - unused_io_amount
+# - useless_attribute
+
+# SUSPICIOUS LINTS (likely bugs)
+# - suspicious_arithmetic_impl
+# - suspicious_assignment_formatting
+# - suspicious_else_formatting
+# - suspicious_map
+# - suspicious_op_assign_impl
+
+# COMPLEXITY LINTS (code should be simpler)
+# - collapsible_if
+# - double_parens
+# - excessive_precision
+# - identity_op
+# - needless_bool
+# - needless_return
+# - redundant_closure
+# - redundant_pattern_matching
+# - single_match
+# - zero_divided_by_zero
+
+# PERFORMANCE LINTS (inefficient code)
+# - box_collection
+# - expect_fun_call
+# - large_const_arrays
+# - large_enum_variant
+# - manual_memcpy
+# - needless_collect
+# - redundant_allocation
+# - slow_vector_initialization
+# - unnecessary_to_owned
+
+# STYLE LINTS (consistency)
+# - collapsible_else_if
+# - comparison_chain
+# - len_without_is_empty
+# - len_zero
+# - needless_late_init
+# - new_without_default
+# - single_char_pattern
+# - string_extend_chars
+# - unnecessary_mut_passed
+
+# PEDANTIC LINTS (extra strictness - opt-in per module)
+# - cast_lossless
+# - cast_possible_truncation
+# - cast_possible_wrap
+# - cast_precision_loss
+# - cast_sign_loss
+# - checked_conversions
+# - explicit_into_iter_loop
+# - explicit_iter_loop
+# - if_not_else
+# - inconsistent_struct_constructor
+# - inefficient_to_string
+# - inline_always
+# - items_after_statements
+# - manual_assert
+# - manual_ok_or
+# - map_unwrap_or
+# - missing_errors_doc
+# - missing_panics_doc
+# - must_use_candidate
+# - needless_continue
+# - needless_for_each
+# - needless_pass_by_value
+# - semicolon_if_nothing_returned
+# - similar_names
+# - too_many_lines
+# - trivially_copy_pass_by_ref
+# - uninlined_format_args
+# - unnecessary_wraps
+# - unused_async
+# - unused_self
+# - used_underscore_binding
+# - wildcard_imports
+
+# RESTRICTION LINTS (require explicit opt-in)
+# - clone_on_ref_ptr
+# - dbg_macro
+# - decimal_literal_representation
+# - exit
+# - expect_used
+# - filetype_is_file
+# - float_cmp_const
+# - get_unwrap
+# - indexing_slicing
+# - let_underscore_must_use
+# - mem_forget
+# - missing_docs_in_private_items
+# - panic
+# - print_stderr
+# - print_stdout
+# - rc_buffer
+# - rest_pat_in_fully_bound_structs
+# - todo
+# - unimplemented
+# - unreachable
+# - unwrap_used
+# - verbose_file_reads
+# - wildcard_enum_match_arm
+
+# CARGO LINTS
+# - cargo_common_metadata
+# - multiple_crate_versions
+# - negative_feature_names
+# - redundant_feature_names
+# - wildcard_dependencies
 
 # Standard lints - deny by default
 # These are enforced via command line: -D warnings

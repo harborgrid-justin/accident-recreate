@@ -1,6 +1,6 @@
 # AccuScene Enterprise - Accident Recreation Platform
 
-**Version 0.2.0** - Professional accident recreation and analysis platform built with Electron, React, TypeScript, and Rust.
+**Version 0.2.5** - Professional accident recreation and analysis platform built with Electron, React, TypeScript, and Rust.
 
 ## Overview
 
@@ -14,12 +14,21 @@ AccuScene Enterprise is a comprehensive desktop application for accident reconst
 - Case management and data persistence
 - Multi-user authentication and authorization
 
-### Enterprise Features (v0.2.0)
-- **GraphQL Federation API** - Unified API gateway with real-time subscriptions
-- **Real-time Collaboration** - Multi-user editing with CRDT-based conflict resolution
-- **Advanced 3D/AR UI** - React Three Fiber components with AR preview
-- **Plugin Architecture** - Extensible system with marketplace integration
-- **Performance Monitoring** - APM dashboard with Prometheus, Datadog, New Relic support
+### Enterprise Features (v0.2.0 + v0.2.5)
+- **GraphQL Federation API** - Unified API gateway with real-time subscriptions *(v0.2.0)*
+- **Real-time Collaboration** - Multi-user editing with CRDT-based conflict resolution *(v0.2.0)*
+- **Advanced 3D/AR UI** - React Three Fiber components with AR preview *(v0.2.0)*
+- **Plugin Architecture** - Extensible system with marketplace integration *(v0.2.0)*
+- **Performance Monitoring** - APM dashboard with Prometheus, Datadog, New Relic support *(v0.2.0)*
+- **Accessibility (a11y)** - Screen reader, high contrast, keyboard navigation support *(v0.2.5)*
+- **Interactive Dashboards** - Customizable real-time dashboards with widget system *(v0.2.5)*
+- **Gesture Recognition** - Multi-touch gestures for enhanced interaction *(v0.2.5)*
+- **Push Notifications** - Real-time notification system with action support *(v0.2.5)*
+- **Offline-first** - Full offline capabilities with automatic sync *(v0.2.5)*
+- **User Preferences** - Centralized preference management with cloud sync *(v0.2.5)*
+- **Full-text Search** - Fast, fuzzy search across all content *(v0.2.5)*
+- **Advanced Visualization** - WebGL/WebGPU-powered data visualizations *(v0.2.5)*
+- **Single Sign-On (SSO)** - Enterprise SSO integration support *(v0.2.5)*
 
 ## Technology Stack
 
@@ -41,8 +50,8 @@ AccuScene Enterprise is a comprehensive desktop application for accident reconst
 - **JWT** - Authentication
 - **DataLoader** - Batching and caching *(v0.2.0)*
 
-### Rust Core (v0.2.0)
-- **15 Rust crates** providing high-performance backend:
+### Rust Core (v0.2.5)
+- **26 Rust crates** providing high-performance backend:
   - Event sourcing & CQRS
   - Advanced analytics engine
   - Real-time streaming pipeline (Apache Arrow)
@@ -53,6 +62,17 @@ AccuScene Enterprise is a comprehensive desktop application for accident reconst
   - Database layer
   - Job processing
   - Distributed clustering
+  - Accessibility (a11y) support *(v0.2.5)*
+  - Dashboard engine *(v0.2.5)*
+  - Gesture recognition *(v0.2.5)*
+  - Notification system *(v0.2.5)*
+  - Offline storage & sync *(v0.2.5)*
+  - Preferences management *(v0.2.5)*
+  - Full-text search engine *(v0.2.5)*
+  - Visualization engine *(v0.2.5)*
+  - SSO integration *(v0.2.5)*
+  - Data transfer & sync *(v0.2.5)*
+  - **Integration layer** - Unified runtime & facade *(v0.2.5)*
 
 ### Build & Tooling
 - **Webpack** - Module bundler
@@ -258,17 +278,48 @@ APM dashboard with:
 
 ### Rust Backend
 
-High-performance backend with 15 crates:
+High-performance backend with 26 crates:
 - **Event Sourcing & CQRS** - Full event-driven architecture
 - **Analytics Engine** - Real-time metrics and insights
 - **Streaming Pipeline** - Apache Arrow-based data flow
 - **ML Integration** - Accident prediction models
 - **Security & Audit** - SOC2 compliance, audit trails
-- Plus 10 more crates for core functionality
+- **Integration Layer** - Unified runtime and facade *(v0.2.5)*
+- Plus 20 more crates for core and UX functionality
 
 **Location**: `rust-core/`
-**Version**: 0.2.0
+**Version**: 0.2.5
 **Language**: Rust 2021 Edition
+
+## v0.2.5 Integration Layer
+
+### Unified Runtime & Service Management
+The integration layer provides a cohesive foundation for all v0.2.5 features:
+
+**Rust Integration** (`rust-core/crates/accuscene-integration/`):
+- **Unified Configuration** - Single config for all 26 crates
+- **Runtime Management** - Lifecycle orchestration for all services
+- **Facade Pattern** - Simplified API access across all features
+- **Event System** - Cross-crate event bus with pub/sub
+- **Service Registry** - Dynamic service discovery and management
+- **Health Aggregation** - Comprehensive health monitoring
+
+**TypeScript Integration** (`src/enterprise/v0.2.5/`):
+- **EnterpriseProvider** - React context for all enterprise features
+- **EnterpriseApp** - Main application shell with status monitoring
+- **useEnterprise** - Unified React hook for feature access
+- **EnterpriseService** - Centralized service management class
+- **Type Definitions** - Comprehensive TypeScript types
+- **Configuration System** - Environment-based config with validation
+
+### Key Capabilities
+- **26 Rust crates** fully integrated under single runtime
+- **Automatic service initialization** with dependency resolution
+- **Real-time health monitoring** across all services
+- **Feature flags** for granular control
+- **Development tools** with live service inspection
+- **Production-ready** deployment validation
+- **Event-driven architecture** for loose coupling
 
 ## Changelog
 

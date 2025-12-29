@@ -1,0 +1,54 @@
+[package]
+name = "accuscene-preferences"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Enterprise Team"]
+description = "User preferences and settings management for AccuScene Enterprise"
+license = "MIT"
+
+[dependencies]
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID generation
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# Encryption for sensitive preferences
+aes-gcm = "0.10"
+base64 = "0.21"
+
+# File system operations
+dirs = "5.0"
+
+# HTTP client for cloud sync
+reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
+
+# Logging
+tracing = "0.1"
+
+# Validation
+validator = { version = "0.16", features = ["derive"] }
+
+# Configuration
+config = "0.13"
+
+[dev-dependencies]
+tempfile = "3.8"
+tokio-test = "0.4"
+
+[lib]
+name = "accuscene_preferences"
+path = "src/lib.rs"

@@ -1,0 +1,222 @@
+# AccuScene Enterprise Cargo Configuration v0.2.5
+# Compiler flags and build settings for strict warning prevention
+# Updated: 2025-12-28
+
+# ============================================================================
+# BUILD CONFIGURATION
+# ============================================================================
+
+[build]
+# Use all available CPU cores for parallel compilation
+jobs = 0
+
+# Increase codegen units in debug builds for faster compilation
+# Decrease in release builds for better optimization
+incremental = true
+
+# Target directory (can be overridden per-project)
+# target-dir = "target"
+
+# ============================================================================
+# RUSTC FLAGS - WARNING CONFIGURATION
+# ============================================================================
+
+[target.'cfg(all())']
+# Apply to all targets
+
+# Deny all warnings by default in CI/production
+# Use RUSTFLAGS environment variable to enable this conditionally
+# rustflags = ["-D", "warnings"]
+
+rustflags = [
+    # ========================================================================
+    # CORRECTNESS WARNINGS (Deny - These are bugs)
+    # ========================================================================
+    "-D", "unsafe-code",                      # Deny unsafe code unless explicitly allowed
+    "-D", "missing-debug-implementations",    # All public types should impl Debug
+    "-D", "missing-copy-implementations",     # Warn if Copy could be derived
+
+    # ========================================================================
+    # SUSPICIOUS/LIKELY BUGS (Deny)
+    # ========================================================================
+    "-D", "unused-must-use",                  # Results must be used
+    "-D", "unused-results",                   # Function results must be used
+    "-D", "unused-imports",                   # Remove unused imports
+    "-D", "unused-variables",                 # Remove unused variables
+    "-D", "unused-mut",                       # Remove unnecessary mut
+    "-D", "dead-code",                        # Remove dead code
+    "-D", "unreachable-code",                 # Code that can never execute
+    "-D", "unreachable-patterns",             # Unreachable match patterns
+
+    # ========================================================================
+    # TYPE SAFETY (Deny)
+    # ========================================================================
+    "-D", "unconditional-recursion",          # Functions that always recurse
+    "-D", "while-true",                       # Use loop instead of while true
+    "-D", "clippy::all",                      # All clippy lints enabled
+    "-D", "clippy::correctness",              # Correctness lints
+    "-D", "clippy::suspicious",               # Suspicious patterns
+    "-D", "clippy::complexity",               # Overly complex code
+    "-D", "clippy::perf",                     # Performance issues
+    "-D", "clippy::style",                    # Style inconsistencies
+
+    # ========================================================================
+    # PEDANTIC LINTS (Warn - Extra strictness)
+    # ========================================================================
+    "-W", "clippy::pedantic",                 # Extra pedantic lints
+    "-W", "clippy::nursery",                  # Experimental lints
+
+    # ========================================================================
+    # CARGO LINTS (Warn)
+    # ========================================================================
+    "-W", "clippy::cargo",                    # Cargo.toml issues
+
+    # ========================================================================
+    # DOCUMENTATION (Warn)
+    # ========================================================================
+    "-W", "missing-docs",                     # Public items should be documented
+    "-W", "rustdoc::missing-crate-level-docs", # Crate should have docs
+    "-W", "rustdoc::broken-intra-doc-links",  # Fix broken doc links
+    "-W", "rustdoc::private-intra-doc-links", # No private item links in public docs
+
+    # ========================================================================
+    # FUTURE COMPATIBILITY (Deny)
+    # ========================================================================
+    "-D", "deprecated",                       # Don't use deprecated items
+    "-D", "future-incompatible",              # Code that will break in future
+    "-D", "nonstandard-style",                # Follow naming conventions
+    "-D", "rust-2018-idioms",                 # Use Rust 2018 idioms
+    "-D", "rust-2021-compatibility",          # Ensure 2021 edition compatibility
+
+    # ========================================================================
+    # ALLOW SPECIFIC LINTS (Override global deny)
+    # ========================================================================
+    "-A", "clippy::module-name-repetitions",  # Allow module name in type names
+    "-A", "clippy::must-use-candidate",       # Don't force #[must_use] everywhere
+    "-A", "clippy::missing-errors-doc",       # Allow missing error docs (for now)
+    "-A", "clippy::missing-panics-doc",       # Allow missing panic docs (for now)
+
+    # ========================================================================
+    # OPTIMIZATION FLAGS
+    # ========================================================================
+    # These are moved to profile settings in Cargo.toml
+]
+
+# ============================================================================
+# CLIPPY CONFIGURATION
+# ============================================================================
+
+[alias]
+# Convenient aliases for common tasks
+
+# Run clippy with strict settings
+clippy-strict = "clippy -- -D warnings -D clippy::all -D clippy::pedantic -D clippy::nursery -D clippy::cargo"
+
+# Run clippy for all workspace members
+clippy-all = "clippy --workspace --all-targets --all-features"
+
+# Check without clippy warnings blocking
+check-fast = "check --workspace --all-targets"
+
+# Build all workspace members
+build-all = "build --workspace --all-targets"
+
+# Test with full warnings
+test-strict = "test --workspace --all-features -- --nocapture"
+
+# Format all code
+fmt-all = "fmt --all"
+
+# Check formatting without modifying files
+fmt-check = "fmt --all -- --check"
+
+# Clean all build artifacts
+clean-all = "clean"
+
+# Update dependencies and check for outdated packages
+update-check = "update --dry-run"
+
+# Audit dependencies for security vulnerabilities
+audit = "audit"
+
+# Run tests with coverage (requires cargo-tarpaulin)
+coverage = "tarpaulin --out Html --output-dir coverage"
+
+# Benchmark all benchmarks
+bench-all = "bench --workspace"
+
+# ============================================================================
+# ENVIRONMENT-SPECIFIC CONFIGURATIONS
+# ============================================================================
+
+# Development builds - faster compilation, more warnings allowed
+[profile.dev]
+# See Cargo.toml for profile settings
+
+# Release builds - optimized, all warnings denied
+[profile.release]
+# See Cargo.toml for profile settings
+
+# ============================================================================
+# PLATFORM-SPECIFIC SETTINGS
+# ============================================================================
+
+# Linux-specific settings
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+# macOS-specific settings
+[target.x86_64-apple-darwin]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+[target.aarch64-apple-darwin]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+# Windows-specific settings (MSVC)
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# Windows-specific settings (GNU)
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"
+
+# ============================================================================
+# REGISTRY CONFIGURATION
+# ============================================================================
+
+[registry]
+# Use sparse registry protocol for faster index updates (Rust 1.70+)
+default = "crates-io"
+
+[registries.crates-io]
+protocol = "sparse"
+
+# ============================================================================
+# NET CONFIGURATION
+# ============================================================================
+
+[net]
+# Retry failed downloads
+retry = 3
+
+# Git fetch with depth 1 for faster clones
+git-fetch-with-cli = false
+
+# ============================================================================
+# HTTP CONFIGURATION
+# ============================================================================
+
+[http]
+# Use system SSL/TLS
+ssl-version = "tlsv1.3"
+
+# Timeout for HTTP requests
+timeout = 30
+
+# ============================================================================
+# FUTURE INCOMPAT REPORT
+# ============================================================================
+
+[future-incompat-report]
+frequency = "always"

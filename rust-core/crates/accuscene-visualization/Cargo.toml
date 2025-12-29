@@ -1,0 +1,54 @@
+[package]
+name = "accuscene-visualization"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Enterprise Team"]
+description = "Advanced data visualization and chart generation for AccuScene Enterprise"
+license = "MIT"
+repository = "https://github.com/accuscene/accuscene-enterprise"
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+
+# Math and statistics
+nalgebra = "0.32"
+statrs = "0.16"
+num-traits = "0.2"
+
+# Time series
+chrono = { version = "0.4", features = ["serde"] }
+
+# Data structures
+itertools = "0.12"
+rayon = "1.8"
+
+# Export formats
+resvg = { version = "0.37", optional = true }
+tiny-skia = { version = "0.11", optional = true }
+usvg = { version = "0.37", optional = true }
+base64 = "0.21"
+
+[dev-dependencies]
+approx = "0.5"
+criterion = "0.5"
+rand = "0.8"
+
+[features]
+default = ["svg-export"]
+svg-export = ["resvg", "tiny-skia", "usvg"]
+full = ["svg-export"]
+
+[lib]
+crate-type = ["lib", "staticlib", "cdylib"]
+
+[[bench]]
+name = "aggregation"
+harness = false
+
+[[bench]]
+name = "interpolation"
+harness = false

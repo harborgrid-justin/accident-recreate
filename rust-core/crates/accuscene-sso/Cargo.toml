@@ -1,0 +1,82 @@
+[package]
+name = "accuscene-sso"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Team <team@accuscene.com>"]
+description = "Enterprise SSO authentication system with SAML, OIDC, OAuth2, and LDAP support for AccuScene Enterprise"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_urlencoded = "0.7"
+
+# JWT and authentication
+jsonwebtoken = "9.2"
+oauth2 = "4.4"
+openidconnect = "3.5"
+
+# SAML 2.0
+samael = "0.0.15"
+
+# LDAP
+ldap3 = { version = "0.11", features = ["tls"] }
+
+# Cryptography
+ring = "0.17"
+rand = "0.8"
+sha2 = "0.10"
+hmac = "0.12"
+base64 = "0.21"
+hex = "0.4"
+argon2 = { version = "0.5", features = ["std"] }
+
+# TOTP for MFA
+totp-lite = "2.0"
+qrcode = "0.14"
+
+# WebAuthn
+webauthn-rs = { version = "0.4", features = ["danger-allow-state-serialisation"] }
+webauthn-rs-proto = "0.4"
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+
+# URL handling
+url = "2.5"
+urlencoding = "2.1"
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Validation
+validator = { version = "0.16", features = ["derive"] }
+regex = "1.10"
+
+# Logging and tracing
+tracing = "0.1"
+
+# Security
+secrecy = "0.8"
+
+# Cache
+lru = "0.12"
+
+# PKCE
+pkce = "0.2"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockito = "1.2"
+wiremock = "0.6"

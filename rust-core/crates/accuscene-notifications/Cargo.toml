@@ -1,0 +1,64 @@
+[package]
+name = "accuscene-notifications"
+version = "0.2.5"
+edition = "2021"
+authors = ["AccuScene Team <team@accuscene.com>"]
+description = "Enterprise-grade real-time notification system for AccuScene"
+license = "MIT"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# UUID generation
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# WebSocket support
+tokio-tungstenite = "0.21"
+futures-util = "0.3"
+
+# Message queue
+lapin = "2.3"  # RabbitMQ client
+deadpool = "0.10"
+
+# Template engine
+tera = "1.19"
+
+# Cron scheduling
+cron = "0.12"
+
+# Collections
+dashmap = "5.5"
+priority-queue = "2.0"
+
+# Database
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "postgres", "chrono", "uuid"] }
+
+# Email
+lettre = { version = "0.11", features = ["tokio1-native-tls"] }
+
+# HTTP client for webhooks
+reqwest = { version = "0.11", features = ["json"] }
+
+# Configuration
+config = "0.14"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.12"
