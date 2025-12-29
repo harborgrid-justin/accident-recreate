@@ -45,10 +45,11 @@ full = ["svg-export"]
 [lib]
 crate-type = ["lib", "staticlib", "cdylib"]
 
-[[bench]]
-name = "aggregation"
-harness = false
-
-[[bench]]
-name = "interpolation"
-harness = false
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "aggregation"
+# harness = false
+#
+# [[bench]]
+# name = "interpolation"
+# harness = false

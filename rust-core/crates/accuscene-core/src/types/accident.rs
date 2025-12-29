@@ -336,7 +336,7 @@ impl AccidentScene {
 }
 
 /// Scene statistics summary
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct SceneStatistics {
     /// Number of vehicles
     pub vehicle_count: usize,

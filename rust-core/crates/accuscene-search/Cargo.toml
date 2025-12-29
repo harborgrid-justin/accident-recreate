@@ -7,7 +7,7 @@ description = "Advanced search and filtering system for AccuScene Enterprise"
 
 [dependencies]
 # Search engine
-tantivy = "0.21"
+tantivy = "0.22"
 tantivy-fst = "0.4"
 
 # Async runtime
@@ -40,6 +40,7 @@ criterion = "0.5"
 tempfile = "3.8"
 proptest = "1.4"
 
-[[bench]]
-name = "search_benchmarks"
-harness = false
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "search_benchmarks"
+# harness = false

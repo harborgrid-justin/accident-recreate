@@ -1,6 +1,6 @@
 {
   "name": "accuscene-enterprise",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "AccuScene Enterprise Accident Recreation Platform",
   "main": "./dist/main/main.js",
   "author": "AccuScene Enterprise",

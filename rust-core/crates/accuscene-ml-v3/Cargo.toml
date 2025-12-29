@@ -1,0 +1,77 @@
+[package]
+name = "accuscene-ml-v3"
+version = "0.3.0"
+edition = "2021"
+authors = ["AccuScene Enterprise Team"]
+description = "AI/ML Prediction Engine for AccuScene Enterprise - Advanced accident reconstruction and analysis"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# Linear algebra and numerical computing
+ndarray = { version = "0.15", features = ["rayon", "serde"] }
+ndarray-stats = "0.5"
+ndarray-rand = "0.14"
+
+# Machine learning
+linfa = "0.7"
+linfa-linear = "0.7"
+linfa-logistic = "0.7"
+linfa-trees = "0.7"
+linfa-nn = "0.7"
+linfa-reduction = "0.7"
+smartcore = "0.3"
+
+# ONNX Runtime for model inference (optional - can be enabled for production)
+# ort = { version = "2.0.0-rc.10", features = ["download-binaries"], optional = true }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+rayon = "1.8"
+
+# Image processing for damage analysis
+image = "0.24"
+imageproc = "0.23"
+
+# Statistics and metrics
+statrs = "0.16"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Utilities
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.6", features = ["serde", "v4"] }
+rand = "0.8"
+rand_distr = "0.4"
+
+# Configuration
+config = "0.13"
+
+# Validation
+validator = { version = "0.16", features = ["derive"] }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+approx = "0.5"
+
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "inference_benchmarks"
+# harness = false
+
+[features]
+default = ["gpu"]
+gpu = []
+cpu-only = []
+distributed = []

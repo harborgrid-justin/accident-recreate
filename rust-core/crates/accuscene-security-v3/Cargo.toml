@@ -1,0 +1,68 @@
+[package]
+name = "accuscene-security-v3"
+version = "0.3.0"
+edition = "2021"
+authors = ["AccuScene Security Team"]
+description = "Enterprise-grade security, RBAC, and compliance for AccuScene"
+license = "MIT"
+
+[dependencies]
+# Cryptography
+argon2 = { version = "0.5", features = ["std"] }
+aes-gcm = "0.10"
+ring = "0.17"
+ed25519-dalek = "2.1"
+hkdf = "0.12"
+pbkdf2 = { version = "0.12", features = ["simple"] }
+sha2 = "0.10"
+subtle = "2.5"
+zeroize = { version = "1.7", features = ["derive"] }
+getrandom = "0.2"
+
+# JWT and Authentication
+jsonwebtoken = "9.2"
+totp-lite = "2.0"
+webauthn-rs = "0.4"
+oauth2 = "4.4"
+base64 = "0.21"
+base32 = "0.4"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# UUID and Time
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error Handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async Runtime (optional)
+tokio = { version = "1.35", features = ["sync", "time"], optional = true }
+
+# Logging
+tracing = "0.1"
+
+# Data Structures
+dashmap = "5.5"
+parking_lot = "0.12"
+
+# SAML
+samael = { version = "0.0.13", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.35", features = ["full", "test-util"] }
+criterion = "0.5"
+
+[features]
+default = ["async"]
+async = ["tokio"]
+saml = ["samael"]
+full = ["async", "saml"]
+
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "crypto_bench"
+# harness = false

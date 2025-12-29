@@ -48,9 +48,6 @@ pub use recovery::{RecoveryAction, RecoveryStrategy, RetryPolicy};
 pub use reporting::{ErrorReport, ErrorReporter};
 pub use types::{AccuSceneError, Result};
 
-// Re-export macros
-pub use macros::*;
-
 /// Prelude module for convenient imports
 pub mod prelude {
     pub use crate::codes::{ErrorCode, ErrorSeverity};

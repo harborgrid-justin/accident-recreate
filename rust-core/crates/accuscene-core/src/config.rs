@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 
 /// Physics engine configuration
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct PhysicsConfig {
     /// Gravity acceleration (m/s²)
     pub gravity: f64,
@@ -81,7 +81,7 @@ impl Validatable for PhysicsConfig {
 impl Serializable for PhysicsConfig {}
 
 /// Rendering configuration
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct RenderConfig {
     /// Render quality level (0-100)
     pub quality: u8,
