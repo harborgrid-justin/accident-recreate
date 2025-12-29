@@ -28,10 +28,17 @@ members = [
     "crates/accuscene-transfer",
     "crates/accuscene-preferences",
     "crates/accuscene-a11y",
+    "crates/accuscene-integration",
+    # v0.3.0 new crates
+    "crates/accuscene-algorithms",
+    "crates/accuscene-ml-v3",
+    "crates/accuscene-performance",
+    "crates/accuscene-physics-v3",
+    "crates/accuscene-security-v3",
 ]
 
 [workspace.package]
-version = "0.2.5"
+version = "0.3.0"
 edition = "2021"
 rust-version = "1.75"
 authors = ["AccuScene Enterprise Team"]

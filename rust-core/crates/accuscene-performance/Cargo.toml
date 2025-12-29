@@ -1,0 +1,55 @@
+[package]
+name = "accuscene-performance"
+version = "0.3.0"
+edition = "2021"
+authors = ["AccuScene Team"]
+description = "High-performance streaming engine with zero-copy operations and sub-millisecond latency"
+license = "MIT OR Apache-2.0"
+rust-version = "1.75"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+bytes = "1.5"
+crossbeam = "0.8"
+rayon = "1.8"
+parking_lot = "0.12"
+metrics = "0.22"
+metrics-exporter-prometheus = "0.13"
+
+# Additional performance-critical dependencies
+ahash = "0.8"
+dashmap = "5.5"
+flume = "0.11"
+lockfree = "0.5"
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+once_cell = "1.19"
+smallvec = "1.11"
+arrayvec = "0.7"
+bumpalo = "3.14"
+memmap2 = "0.9"
+cfg-if = "1.0"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+quickcheck = "1.0"
+rand = "0.8"
+
+[features]
+default = ["simd"]
+simd = []
+nightly = ["simd"]
+
+# Note: Profile definitions are in the workspace root Cargo.toml
+# and will be ignored if specified here
+
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "streaming_bench"
+# harness = false
+#
+# [[bench]]
+# name = "memory_bench"
+# harness = false

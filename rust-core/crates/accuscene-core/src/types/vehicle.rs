@@ -224,7 +224,7 @@ impl Vehicle {
 
     /// Get current speed in mph
     pub fn speed_mph(&self) -> f64 {
-        self.speed() * 2.236936
+        self.speed() * 2.236_936
     }
 
     /// Set velocity from speed and direction angle

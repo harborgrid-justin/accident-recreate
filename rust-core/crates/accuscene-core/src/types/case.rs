@@ -231,9 +231,7 @@ impl Case {
     pub fn set_status(&mut self, status: CaseStatus) -> Result<()> {
         // Validate status transitions
         match (&self.status, &status) {
-            (CaseStatus::Completed, CaseStatus::Draft)
-            | (CaseStatus::Archived, CaseStatus::Draft)
-            | (CaseStatus::Cancelled, CaseStatus::Draft) => {
+            (CaseStatus::Completed | CaseStatus::Archived | CaseStatus::Cancelled, CaseStatus::Draft) => {
                 return Err(AccuSceneError::InvalidState(
                     "Cannot revert finalized case to draft".to_string(),
                 ));

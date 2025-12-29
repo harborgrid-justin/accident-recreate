@@ -287,6 +287,7 @@ impl Vector3D {
         }
     }
 
+    /// Create a unit vector pointing in the Y direction (0, 1, 0)
     pub fn unit_y() -> Self {
         Self {
             x: 0.0,
@@ -295,6 +296,7 @@ impl Vector3D {
         }
     }
 
+    /// Create a unit vector pointing in the Z direction (0, 0, 1)
     pub fn unit_z() -> Self {
         Self {
             x: 0.0,

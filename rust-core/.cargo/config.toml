@@ -7,8 +7,8 @@
 # ============================================================================
 
 [build]
-# Use all available CPU cores for parallel compilation
-jobs = 0
+# Use all available CPU cores for parallel compilation (default behavior)
+# Note: The 'jobs' field is omitted to use the default (all available cores)
 
 # Increase codegen units in debug builds for faster compilation
 # Decrease in release builds for better optimization

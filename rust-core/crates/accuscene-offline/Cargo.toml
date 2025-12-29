@@ -59,6 +59,7 @@ sqlite = []
 rocksdb-backend = ["rocksdb"]
 all-backends = ["sqlite", "rocksdb-backend"]
 
-[[bench]]
-name = "sync_benchmarks"
-harness = false
+# Benchmarks will be added when implemented
+# [[bench]]
+# name = "sync_benchmarks"
+# harness = false

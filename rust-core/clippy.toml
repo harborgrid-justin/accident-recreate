@@ -37,8 +37,8 @@ array-size-threshold = 262144
 # Vector initialization capacity threshold
 vec-box-size-threshold = 4096
 
-# Large stack arrays threshold (bytes)
-large-stack-arrays-threshold = 16384
+# Stack size threshold (bytes) - warns on large stack allocations
+stack-size-threshold = 16384
 
 # ============================================================================
 # STRUCT AND TYPE DESIGN

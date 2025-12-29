@@ -107,12 +107,12 @@ pub fn kmh_to_ms(kmh: f64) -> f64 {
 
 /// Convert meters per second to miles per hour
 pub fn ms_to_mph(ms: f64) -> f64 {
-    ms * 2.236936
+    ms * 2.236_936
 }
 
 /// Convert miles per hour to meters per second
 pub fn mph_to_ms(mph: f64) -> f64 {
-    mph / 2.236936
+    mph / 2.236_936
 }
 
 /// Calculate kinetic energy (in Joules)

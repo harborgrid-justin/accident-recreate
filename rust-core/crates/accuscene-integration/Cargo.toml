@@ -33,44 +33,44 @@ chrono = { version = "0.4", features = ["serde"] }
 uuid = { version = "1.6", features = ["v4", "serde"] }
 
 # Internal AccuScene crates - Core functionality
-accuscene-core = { path = "../accuscene-core", version = "0.2.0" }
-accuscene-errors = { path = "../accuscene-errors", version = "0.2.0" }
-accuscene-ffi = { path = "../accuscene-ffi", version = "0.2.0" }
+accuscene-core = { path = "../accuscene-core" }
+accuscene-errors = { path = "../accuscene-errors" }
+accuscene-ffi = { path = "../accuscene-ffi" }
 
 # Data layer crates
-accuscene-database = { path = "../accuscene-database", version = "0.2.0" }
-accuscene-cache = { path = "../accuscene-cache", version = "0.2.0" }
-accuscene-eventsourcing = { path = "../accuscene-eventsourcing", version = "0.2.0" }
+accuscene-database = { path = "../accuscene-database" }
+accuscene-cache = { path = "../accuscene-cache" }
+accuscene-eventsourcing = { path = "../accuscene-eventsourcing" }
 
 # Security and authentication
-accuscene-security = { path = "../accuscene-security", version = "0.2.0" }
-accuscene-crypto = { path = "../accuscene-crypto", version = "0.2.0" }
-accuscene-sso = { path = "../accuscene-sso", version = "0.2.5" }
+accuscene-security = { path = "../accuscene-security" }
+accuscene-crypto = { path = "../accuscene-crypto" }
+accuscene-sso = { path = "../accuscene-sso" }
 
 # Processing and computation
-accuscene-physics = { path = "../accuscene-physics", version = "0.2.0" }
-accuscene-ml = { path = "../accuscene-ml", version = "0.2.0" }
-accuscene-analytics = { path = "../accuscene-analytics", version = "0.2.0" }
-accuscene-jobs = { path = "../accuscene-jobs", version = "0.2.0" }
+accuscene-physics = { path = "../accuscene-physics" }
+accuscene-ml = { path = "../accuscene-ml" }
+accuscene-analytics = { path = "../accuscene-analytics" }
+accuscene-jobs = { path = "../accuscene-jobs" }
 
 # Data handling
-accuscene-compression = { path = "../accuscene-compression", version = "0.2.0" }
-accuscene-streaming = { path = "../accuscene-streaming", version = "0.2.0" }
-accuscene-transfer = { path = "../accuscene-transfer", version = "0.2.5" }
+accuscene-compression = { path = "../accuscene-compression" }
+accuscene-streaming = { path = "../accuscene-streaming" }
+accuscene-transfer = { path = "../accuscene-transfer" }
 
 # Infrastructure
-accuscene-cluster = { path = "../accuscene-cluster", version = "0.2.0" }
-accuscene-telemetry = { path = "../accuscene-telemetry", version = "0.2.0" }
+accuscene-cluster = { path = "../accuscene-cluster" }
+accuscene-telemetry = { path = "../accuscene-telemetry" }
 
 # User experience crates (v0.2.5 additions)
-accuscene-a11y = { path = "../accuscene-a11y", version = "0.2.5" }
-accuscene-dashboard = { path = "../accuscene-dashboard", version = "0.2.5" }
-accuscene-gestures = { path = "../accuscene-gestures", version = "0.2.5" }
-accuscene-notifications = { path = "../accuscene-notifications", version = "0.2.5" }
-accuscene-offline = { path = "../accuscene-offline", version = "0.2.5" }
-accuscene-preferences = { path = "../accuscene-preferences", version = "0.2.5" }
-accuscene-search = { path = "../accuscene-search", version = "0.2.5" }
-accuscene-visualization = { path = "../accuscene-visualization", version = "0.2.5" }
+accuscene-a11y = { path = "../accuscene-a11y" }
+accuscene-dashboard = { path = "../accuscene-dashboard" }
+accuscene-gestures = { path = "../accuscene-gestures" }
+accuscene-notifications = { path = "../accuscene-notifications" }
+accuscene-offline = { path = "../accuscene-offline" }
+accuscene-preferences = { path = "../accuscene-preferences" }
+accuscene-search = { path = "../accuscene-search" }
+accuscene-visualization = { path = "../accuscene-visualization" }
 
 [dev-dependencies]
 tokio-test = "0.4"
